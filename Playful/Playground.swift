@@ -9,10 +9,10 @@
 import Foundation
 
 
-struct Playground {
-    var url: URL
+public struct Playground {
+    private(set) public var url: URL
     
-    init(named name: String, inDirectory directory: URL) throws {
+    public init(named name: String, inDirectory directory: URL) throws {
         guard let templateURL = Bundle.playful.url(forResource: "Play", withExtension: "playground") else {
             throw PlayfulError.failedToLoadTemplate
         }
@@ -31,7 +31,7 @@ struct Playground {
         return url.appendingPathComponent("Contents.swift")
     }
 
-    func append(code: String) throws {
+    public func append(code: String) throws {
         let contentsURL = contentsDotSwiftURL
         print(contentsURL.path)
         guard FileManager.default.fileExists(atPath: contentsURL.path) else {
